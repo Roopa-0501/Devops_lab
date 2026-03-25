@@ -1,0 +1,370 @@
+
+------------>Form Validations
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="name" value="<?php echo $name;?>">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  Website: <input type="text" name="website" value="<?php echo $website;?>">
+  <span class="error"><?php echo $websiteErr;?></span>
+  <br><br>
+  Comment: <textarea name="comment" rows="5" cols="40"><?php echo $comment;?></textarea>
+  <br><br>
+  Gender:
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+  <input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+  <span class="error">* <?php echo $genderErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
+
+</body>
+</html>
+
+------------>Form Validations
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Programs</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .section { margin-bottom: 40px; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body onload="initAll()">
+
+  <h1>JavaScript Programs</h1>
+
+  <!-- 1. Registration Form Validation -->
+  <div class="section">
+    <h2>1. Registration Form Validation</h2>
+    <form onsubmit="return validateForm()">
+      First Name: <input type="text" id="fname"><br><br>
+      Password: <input type="password" id="password"><br><br>
+      Email: <input type="text" id="email"><br><br>
+      Mobile: <input type="text" id="mobile"><br><br>
+      Last Name: <input type="text" id="lname"><br><br>
+      Address: <input type="text" id="address"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <!-- 2. Age Validation -->
+  <div class="section">
+    <h2>2. Age Validation Form</h2>
+    <form onsubmit="return validateAge()">
+      Age: <input type="number" id="age"><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+  <!-- 3. Info Box on Page Load -->
+  <div class="section">
+    <h2>3. Info Box on Page Load</h2>
+    <div id="info" style="display: none; border: 1px solid black; padding: 10px;">
+      Welcome to the site! This box appeared on page load.
+    </div>
+  </div>
+
+  <!-- 4. Background Color Change -->
+  <div class="section">
+    <h2>4. Background Color Change After 5 Seconds</h2>
+    <p>Wait for 5 seconds after loading this page to see the background color change.</p>
+  </div>
+
+  <!-- 5. Dynamic Styling -->
+  <div class="section">
+    <h2>5. Dynamic Styling</h2>
+    <p id="text">Click the buttons below to style this text.</p>
+    <button onclick="bold()">Bold</button>
+    <button onclick="italic()">Italic</button>
+    <button onclick="underline()">Underline</button>
+  </div>
+
+  <!-- 6. Show Hidden Div -->
+  <div class="section">
+    <h2>6. Show Hidden Div on Click</h2>
+    <p onclick="showStats()" style="cursor: pointer; color: blue; text-decoration: underline;">Click on this name: Virat Kohli</p>
+    <div id="stats" style="display: none;">
+      <strong>Player Stats:</strong><br>
+      Matches: 300<br>
+      Runs: 12000
+    </div>
+  </div>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("fname").value;
+      const pass = document.getElementById("password").value;
+      const email = document.getElementById("email").value;
+      const mobile = document.getElementById("mobile").value;
+      const lname = document.getElementById("lname").value;
+      const address = document.getElementById("address").value;
+
+      if (!/^[A-Za-z]{6,}$/.test(name)) {
+        alert("First name must contain only alphabets and be at least 6 characters.");
+        return false;
+      }
+
+      if (pass.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return false;
+      }
+
+      if (!/^[a-zA-Z0-9._%+-]+@[a-z]+\\.[a-z]{2,4}$/.test(email)) {
+        alert("Invalid email format.");
+        return false;
+      }
+
+      if (!/^\\d{10}$/.test(mobile)) {
+        alert("Mobile number must be exactly 10 digits.");
+        return false;
+      }
+
+      if (lname.trim() === "" || address.trim() === "") {
+        alert("Last name and address cannot be empty.");
+        return false;
+      }
+
+      alert("Registration Successful!");
+      return true;
+    }
+
+    function validateAge() {
+      const age = parseInt(document.getElementById("age").value);
+      if (age < 1 || age > 120) {
+        alert("Age must be between 1 and 120.");
+        return false;
+      }
+      alert("Age is valid.");
+      return true;
+    }
+
+    function showInfo() {
+      document.getElementById("info").style.display = "block";
+    }
+
+  function changeBackground() {
+      setTimeout(() => {
+        document.body.style.backgroundColor = "#e0f7fa";
+      }, 5000);
+    }
+
+    function bold() {
+      document.getElementById("text").style.fontWeight = "bold";
+    }
+
+    function italic() {
+      document.getElementById("text").style.fontStyle = "italic";
+    }
+
+    function underline() {
+      document.getElementById("text").style.textDecoration = "underline";
+    }
+
+    function showStats() {
+      document.getElementById("stats").style.display = "block";
+    }
+
+    function initAll() {
+      showInfo();
+      changeBackground();
+    }
+  </script>
+
+</body>
+</html>
+
+
+elseif (!preg_match('/^[0-9]{10}$/', $mobile)) {
+    $error = "Invalid mobile number!";
+}
+
+
+
+elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $error = "Invalid email format!";
+}
+
+
+
+if (password_verify($password, $hash)) {
+    echo "Password is correct!";
+} else {
+    echo "Invalid password.";
+}
+
+
+$password = $_POST['password'];  // From form submission
+
+// Hash the password securely
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+// Store $hashedPassword in your database
+// Example using PDO (assume $pdo is your DB connection):
+$stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+$stmt->execute([$username, $hashedPassword]);
+?>
+
+
+------------------->JS validations
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+</head>
+<body>
+<form id="myform" method="post" action="register1.php">
+<h2>College Registration</h2>
+<label>Name :</label><input type="text" name="name" id="name" required><br>
+<label>Email :</label><input type="email" name="email" id="email" required><br>
+<label>Password :</label><input type="password" name="password" id="password" required><br>
+<label>Confirm Password :</label><input type="password" name="confirmpassword" id="confirmpassword" required><br>
+<label>Gender :</label><label>Male</label><input type="radio" name="gender" id="gender" value="male">
+<label>Female</label><input type="radio" name="gender" id="gender" value="female"><br>
+<label>PhoneNumber :</label><input type="number" name="phone" id="phone" required><br>
+<label>Upload Image :</label><input type="file" name="photo" id="photo" required><br>
+<input type="submit" value="submit"> <input type="reset" value="Reset">
+</form>
+
+<script>
+document.getElementById("myform").addEventListener("submit", function (e) {
+let isValid = true;
+let error = "";
+
+let name = document.getElementById("name").value.trim();
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
+let confirm = document.getElementById("confirmpassword").value.trim();
+let phone = document.getElementById("phone").value.trim();
+let fileInput = document.getElementById("photo");
+let genderSelected = document.querySelector('input[name="gender"]:checked');
+
+// Name validation
+if (!/^[a-zA-Z ]+$/.test(name)) {
+error += "Invalid name. Only letters and spaces allowed.\n";
+isValid = false;
+}
+if (!/^[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,4}$/.test(email)){
+error+="Invalid email format\n";
+isValid=false;
+}
+if(password.length<6){
+error+="minimum legth 6\n";
+isValid=false;
+}
+if(password!=confirm){
+error+="password and confirm pass not matched\n";
+isValid=false;
+}
+if(!/^[0-9]{10}$/.test(phone)){
+error+="phone number must be 10 digit\n";
+isValid=false;
+}
+let file=fileInput.files[0];
+let maxsize=2*1024*1024;
+let types=["image/jpeg", "image/png"];
+if(!types.includes(file.type)){
+error+="only jpg and png \n";
+isValid=false;
+}
+if(file.size>maxsize){
+error+="not exceed 2mb\n";
+isValid=false;
+}
+if (!isValid) {
+e.preventDefault();
+alert(error);
+}
+if(isValid){
+alert("successfull");
+}
+});
+</script>
+</body>
+</html>
+
+
+
+
+--------------->php
+<?php
+include 'db.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$error="";
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+$name=trim($_POST["name"]);
+$email=trim($_POST["email"]);
+$password=trim($_POST["password"]);
+$cpassword=trim($_POST["confirmpassword"]);
+$hashpassword=password_hash($password,PASSWORD_DEFAULT);
+$phone=trim($_POST["phone"]);
+if(empty($name) || empty($email) || empty($password) || empty($cpassword) || empty($phone)){
+//echo "all fields are required";
+header("Location:customer.html");
+exit();
+}
+else{
+if(!preg_match("/^[a-zA-Z ]+$/",$name)){
+$error.="name not correct.\n";
+}
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+$error.="invalid email format.\n";
+}
+if(strlen($password)<6){
+$error.="password min 6.\n";
+}
+if($password!=$cpassword){
+$error.="password not match.\n";
+}
+if(!preg_match("/^[0-9]{10}$/",$phone)){
+$error.="number 10 digits";
+}
+}
+if(!empty($error)){
+//echo $error;
+header("Location:calci.html");
+exit();
+}
+else{
+$sql=$conn->query("insert into customer values('$name','$email','$password','$cpassword','$phone');");
+$s=$conn->query("select * from customer;");
+if($s->num_rows>0){
+while($result=$s->fetch_assoc()){
+echo $result['name'];
+echo $result['email'];
+echo $result['password'];
+echo $result['phone'];
+}
+}
+else{
+echo "no data found";
+}
+}
+}
+else{
+echo"<script>alert('method not post type')</script>";
+}
+?>
+
